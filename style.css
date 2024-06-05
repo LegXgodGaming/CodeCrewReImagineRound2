@@ -1,7 +1,10 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Gothic+A1&family=Krona+One&family=Lexend+Peta:wght@100..900&family=Libre+Barcode+128+Text&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
+@font-face {
+    font-family: ITC Avant Garde Gothic lt;
+    src: url(font/ITC\ Avant\ Garde\ Gothic\ LT\ Bold.ttf);
+}
 
  
  *{ 
@@ -844,6 +847,12 @@ Height:100%;
 }
 
 @media screen and (max-width: 1000px) {
+    .circle{
+        display: none;
+    }
+    .blocksection{
+        overflow: hidden;
+    }
 
     .center h1{
        font-size: 15vw;
@@ -871,6 +880,9 @@ Height:100%;
 
 
 @media screen and (max-width: 600px) {
+    .blocksection{
+        overflow: hidden;
+    }
     .sidebar{
         width: 100%;
         height: 100%;
@@ -1064,8 +1076,8 @@ Height:100%;
 }
 .blocksection{
     z-index: 99;
-   
-    width: 100%;
+   display: none;
+    width: 100vw;
     height: 100%;
     left: 20%;
  }
@@ -1083,6 +1095,7 @@ Height:100%;
     left: 20%;
     width: 75vw;
     height: 35vh;
+    display: none;
     
  }
  .block1{

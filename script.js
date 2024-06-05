@@ -193,45 +193,47 @@ document.addEventListener("DOMContentLoaded", function() {
         
          
 
-let tl = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".page5",
-        scroller: ".main",
-        // markers: true,
-        start: "2600", // Adjust the start point as needed
-        end: "-10%", // Adjust the end point as needed
-        scrub: 2
+        if (window.matchMedia("(min-width: 1000px)").matches) {
+            let tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ".page5",
+                    scroller: ".main",
+                    // markers: true,
+                    start: "2600", // Adjust the start point as needed
+                    end: "-10%", // Adjust the end point as needed
+                    scrub: 2
+                }
+            });
+        
+            tl.from(".page5 .box1", {
+                left: "-10%",
+                opacity: 0,
+                rotate: -50,
+                duration: 1
+            })
+            .from(".page5 .box2", {
+                left: "63%",
+                opacity: 0,
+                rotate: 50,
+                duration: 1
+            }, "+=0.5") 
+            .from(".page5 .box3", {
+                // top: "0%",
+                left: "-10%",
+                opacity: 0,
+                rotate: -50,
+                duration: 1
+            }, "+=0.5")
+            .from(".page5 .box4", {
+                // top: "0%",
+                left: "63%",
+                opacity: 0,
+                rotate: 50,
+                duration: 1
+            }, "+=0.5");
+        }
     }
-});
-
-
-tl.from(".page5 .box1", {
-    left: "-10%",
-    opacity: 0,
-    rotate: -50,
-    duration: 1
-})
-.from(".page5 .box2", {
-    left: "63%",
-    opacity: 0,
-    rotate: 50,
-    duration: 1
-}, "+=0.5") 
-.from(".page5 .box3", {
-    // top: "0%",
-    left: "-10%",
-    opacity: 0,
-    rotate: -50,
-    duration: 1
-}, "+=0.5")
-.from(".page5 .box4", {
-    // top: "0%",
-    left: "63%",
-    opacity: 0,
-    rotate: 50,
-    duration: 1
-}, "+=0.5");
-    }
+        
     function shoessection() {
     const leftButton = document.querySelector(".btn1x");
     const rightButton = document.querySelector(".btn2x");
