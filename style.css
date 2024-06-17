@@ -880,6 +880,8 @@ Height:100%;
 
 
 @media screen and (max-width: 600px) {
+    #cursor{
+        display: none;}
     .blocksection{
         overflow: hidden;
     }
