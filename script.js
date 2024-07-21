@@ -25,25 +25,58 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function setupCursorInteractions() {
-        const cursor = document.querySelector("#cursor");
-        const video = document.querySelector(".video");
-        const main = document.querySelector(".main");
+       
 
-        if (video) {
-            video.addEventListener("mouseenter", () => {
-                gsap.to(cursor, { backgroundColor: "yellow" });
-            });
+        const coords ={x:0, y:0};
+        const circles =document.querySelectorAll(".cursor");
 
-            video.addEventListener("mouseleave", () => {
-                gsap.to(cursor, { backgroundColor: "black" });
-            });
+
+
+        circles.forEach(function(circle){
+            circle.x = 0;
+            circle.y = 0;
+    
+        })
+
+
+
+
+        window.addEventListener("mousemove", function(e){
+           coords.x = e.clientX;
+           coords.y = e.clientY;
+
+ 
+
+
+        });
+
+        function animateCircles(){
+
+           let x = coords.x;
+           let y = coords.y;
+
+
+        circles.forEach(function (circle, index){
+            circle.style.left = x- 12 + "px";
+            circle.style.top = y - 12 + "px";
+            circle.x = x;
+            circle.y = y;
+        
+           circle.style.scale = (circles.length -index) /circles.length;
+
+
+           const nextCircle =circles[index + 1] || circles[0];
+            x += (nextCircle.x -x)*0.1;
+            y += (nextCircle.y -y)*0.1;
+    
+   
+
+           });
+            requestAnimationFrame(animateCircles)
+ 
         }
 
-        if (main) {
-            main.addEventListener("mousemove", (e) => {
-                gsap.to(cursor, { x: e.x, y: e.y, duration: -1 });
-            });
-        }
+       animateCircles();
     }
 
     function setupBackpic() {
@@ -199,8 +232,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     trigger: ".page5",
                     scroller: ".main",
                     // markers: true,
-                    start: "2600", // Adjust the start point as needed
-                    end: "-10%", // Adjust the end point as needed
+                    start: "2600", 
+                    end: "-10%", 
                     scrub: 2
                 }
             });
@@ -259,7 +292,7 @@ function moveBoxesLeft() {
     
     for (let i = boxes.length - 1; i > 0; i--) {
          
-        // document.querySelector('.box6').classList.add('scaled');
+       
         
         boxes[i].style.left = window.getComputedStyle(boxes[i - 1]).left;
         boxes[i].style.top = window.getComputedStyle(boxes[i - 1]).top;
@@ -333,19 +366,19 @@ function moveBoxesRight() {
         const infoboxElement = document.querySelector('.infobox');
     
         function updateInfobox(index) {
-            // Remove the slide-in class to reset the animation
+           
             infoboxElement.classList.remove('slide-in');
     
-            // Update content after a short delay to allow the animation to reset
+            
             setTimeout(() => {
                 titleElement.textContent = items[index].title;
                 priceElement.textContent = items[index].price;
                 descriptionElement.textContent = items[index].description;
                 
-                // Trigger reflow to restart the animation
+              
                 void infoboxElement.offsetWidth;
     
-                // Add the slide-in class to start the animation
+              
                 infoboxElement.classList.add('slide-in');
             }, 10);
         }
@@ -360,26 +393,10 @@ function moveBoxesRight() {
             updateInfobox(currentIndex);
         });
     
-        // Initial display
+        
         updateInfobox(currentIndex);
     }
-    
-    // function buttonhover() {
-    //     const hoverbtn = document.querySelector(".hoverbtn")
-        
-    
-    //     hoverbtn.onmousemove = function name(e) {
-    
-    //     const x = e.pageX - btn.offsetLeft;
-    //     const y = e.pageY - btn.offsetTop;
-    
-    //     hoverbtn.style.setProperty('--x', x + 'px');
-    //     hoverbtn.style.setProperty('--y', y + 'px');
-        
-    // }
-    
-        
-    // }
+
 
     function menufunction() {
        let menu1 = document.querySelector(".menu1");
@@ -387,7 +404,7 @@ function moveBoxesRight() {
        let sidebar = document.querySelector(".sidebar");
        menubtn.addEventListener("click",() =>{
           sidebar.style.display = "none";
-        //   sidebar.classList.add('slideout');
+       
        })
        menu1.addEventListener("click",() =>{
          sidebar.style.display = "block";
@@ -401,14 +418,25 @@ function moveBoxesRight() {
         const loader = document.querySelector(".loadervideo")
         gsap.to(loader, {
             y:"-100%",
-            // opacity:0,
+            
             duration:1,
             delay:5
-            // display:"hidden"
+            
         })
+
+       
         
     }
     
+    
+// $(window).on("load", function() {
+//     const loader = $(".loadervideo");
+//     loader.fadeOut("slow", function() {
+//         $(".content").fadeIn("slow");
+//         $('body, html').css('overflow', 'auto');
+//     });
+// });
+
     
     
 
